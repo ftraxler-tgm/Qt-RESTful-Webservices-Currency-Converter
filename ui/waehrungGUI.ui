@@ -14,7 +14,7 @@
    <string>Currency Converter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="exitButton">
+   <widget class="QPushButton" name="exitB">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -27,7 +27,7 @@
      <string>Exit</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="resetButton">
+   <widget class="QPushButton" name="resetB">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -40,7 +40,7 @@
      <string>Zurücksetzen</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="textBrowserBox">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -50,7 +50,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="statusLabel">
+   <widget class="QLabel" name="status">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -63,7 +63,7 @@
      <string>Status:</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="liveDatenBox">
+   <widget class="QCheckBox" name="liveCheckbox">
     <property name="geometry">
      <rect>
       <x>710</x>
@@ -76,7 +76,7 @@
      <string>Live-Daten</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="zmrechnenButton">
+   <widget class="QPushButton" name="umrechnenB">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -89,7 +89,7 @@
      <string>Umrechnen</string>
     </property>
    </widget>
-   <widget class="QLabel" name="waehrungLabel">
+   <widget class="QLabel" name="waehrungText">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -102,7 +102,7 @@
      <string>Währung:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="zielwaehrung">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -112,7 +112,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="zielLabel">
+   <widget class="QLabel" name="zielwaehrungText">
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -135,7 +135,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="betragLabel">
+   <widget class="QLabel" name="betragText">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -148,7 +148,7 @@
      <string>Betrag:</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox">
+   <widget class="QSpinBox" name="betragSpinBox">
     <property name="geometry">
      <rect>
       <x>80</x>

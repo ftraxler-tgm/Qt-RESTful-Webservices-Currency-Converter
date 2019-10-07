@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="floating-points",
+    name="RESTful-Webservices",
     version="0.0.1",
     author="Fabian Traxler",
     author_email="ftrlaxer@tgm.ac.at",
-    description="Floating Points",
+    description="RESTful-Webservices-Currency-Converter",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/TGM-HIT/floating-points",
+    url="https://github.com/ftraxler-tgm/Qt-RESTful-Webservices-Currency-Converter",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
