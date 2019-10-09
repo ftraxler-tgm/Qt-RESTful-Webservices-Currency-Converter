@@ -4,10 +4,10 @@ View package
 Submodules
 ----------
 
-View.waehrungGui module
+View.WaehrungGui module
 -----------------------
 
-.. automodule:: View.waehrungGui
+.. automodule:: View.WaehrungGui
     :members:
     :undoc-members:
     :show-inheritance:

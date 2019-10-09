@@ -1,4 +1,43 @@
+from View import WaehrungGui
+from Model import Model
+from PyQt5.QtWidgets import *
+import sys
 
 
-if __name__ == "__name__":
-    pass
+class Controller(QMainWindow):
+    '''
+    :var
+    '''
+    def __init__(self , parent = None):
+        super().__init__(parent)
+        self.main_form = WaehrungGui.Ui_mainWindow()
+        self.main_form.setupUi(self)
+        self.main_form.exitB.clicked.connect(self.exitButton)
+        self.main_form.resetB.clicked.connect(self.zuruecksetzen)
+        self.main_form.umrechnenB.clicked.connect(self.umrechnen)
+        self.model = Model()
+
+    def exitButton(self):
+
+        sys.exit()
+
+    def zuruecksetzen(self):
+        print("All fields have been cleared")
+        self.main_form.betragSpinBox.setValue(0)
+        self.main_form.betragSpinBox.cleanText()
+        self.main_form.waehrungInput.clear()
+        self.main_form.textBrowserBox.clear()
+        self.main_form.zielwaehrung.clear()
+        self.main_form.liveCheckbox.setChecked(False)
+
+
+    def umrechnen(self):
+        self.model.umrechnen()
+        pass
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    c = Controller()
+    c.show()
+    sys.exit(app.exec_())
