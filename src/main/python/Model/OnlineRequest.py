@@ -1,15 +1,9 @@
-import requests,json
 class Rest:
-
     def __init__(self):
-        self.base= None
-        self.symbols = None
-        self.wert = None
-        self.output = None
-        self.online = True
+        super().__init__()
 
 
-    def umrechnen(self,):
+    def umrechnen(self, ):
         result = str(self.wert) + " " + self.base + " entsprechen \n\n"
         # kurs = output['rates'][symbols]
         for x in self.symbols:
@@ -22,36 +16,29 @@ class Rest:
         return result
 
 
-    def requestData(self,base,ziel,wert):
-        self.wert=wert
-        self.base=base
-        self.symbols=str(ziel).split(',')
+    def requestData(self, base, ziel, wert):
+        self.wert = wert
+        self.base = base
+        self.symbols = str(ziel).split(',')
 
         print(self.online)
 
-        if(self.online):
+        if (self.online):
             url = "https://api.exchangeratesapi.io/latest"
-            output=""
+            output = ""
             params = {"base": base,
                       "symbols": ziel,
                       }
             resp = requests.get(url, params=params)
             output = ""
             if resp.status_code != 200:
-                output= resp.json()
+                output = resp.json()
                 raise ValueError("Request failed")
 
             else:
                 output = resp.json()
-                self.output=output
+                self.output = output
                 return (self.umrechnen())
         else:
             with open('../api.json') as json_data:
-                file= json.load(json_data)
-
-
-
-
-
-
-
+                file = json.load(json_data)

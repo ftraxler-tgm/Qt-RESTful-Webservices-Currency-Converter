@@ -1,5 +1,5 @@
 from View import WaehrungGui
-from Model import Model
+from Model import *
 from PyQt5.QtWidgets import *
 import sys,requests,json
 
@@ -11,7 +11,7 @@ class Controller(QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.model = Model.Rest()
+        self.model = Model.Re
         self.main_form = WaehrungGui.Ui_mainWindow()
         self.main_form.setupUi(self)
         self.main_form.exitB.clicked.connect(self.exitButton)
