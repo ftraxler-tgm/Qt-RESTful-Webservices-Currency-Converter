@@ -4,10 +4,10 @@ Model package
 Submodules
 ----------
 
-Model.Rest module
------------------
+Model.Model module
+------------------
 
-.. automodule:: Model.Rest
+.. automodule:: Model.Model
     :members:
     :undoc-members:
     :show-inheritance:

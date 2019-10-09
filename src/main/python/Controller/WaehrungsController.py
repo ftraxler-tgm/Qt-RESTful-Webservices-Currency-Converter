@@ -23,18 +23,23 @@ class Controller(QMainWindow):
         sys.exit()
 
     def zuruecksetzen(self):
-        print("All fields have been cleared")
         self.main_form.betragSpinBox.setValue(0)
         self.main_form.betragSpinBox.cleanText()
         self.main_form.waehrungInput.clear()
         self.main_form.textBrowserBox.clear()
         self.main_form.zielwaehrung.clear()
         self.main_form.liveCheckbox.setChecked(False)
+        print("All fields have been cleared")
 
 
     def umrechnen(self):
-        self.model.umrechnen("USD","EUR")
-        pass
+        try:
+            request=self.model.umrechnen(self.main_form.waehrungInput.text().__str__(),self.main_form.zielwaehrung.text().__str__(),100.0)
+            self.main_form.textBrowserBox.setText(request)
+            self.main_form.status.setText(self.main_form.status.text().__str__()+" Ok")
+        except ValueError as e:
+            self.main_form.status.setText(self.main_form.status.text().__str__()+e.__str__())
+
 
 
 if __name__ == "__main__":

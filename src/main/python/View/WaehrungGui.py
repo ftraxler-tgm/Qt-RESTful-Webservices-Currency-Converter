@@ -26,7 +26,7 @@ class Ui_mainWindow(object):
         self.textBrowserBox.setGeometry(QtCore.QRect(20, 50, 781, 192))
         self.textBrowserBox.setObjectName("textBrowserBox")
         self.status = QtWidgets.QLabel(self.centralwidget)
-        self.status.setGeometry(QtCore.QRect(20, 298, 55, 16))
+        self.status.setGeometry(QtCore.QRect(20, 298, 341, 16))
         self.status.setObjectName("status")
         self.liveCheckbox = QtWidgets.QCheckBox(self.centralwidget)
         self.liveCheckbox.setGeometry(QtCore.QRect(703, 14, 91, 31))
