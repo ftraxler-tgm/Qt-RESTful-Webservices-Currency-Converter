@@ -10,12 +10,13 @@ class Controller(QMainWindow):
     '''
     def __init__(self , parent = None):
         super().__init__(parent)
+        self.model = Model.Rest()
         self.main_form = WaehrungGui.Ui_mainWindow()
         self.main_form.setupUi(self)
         self.main_form.exitB.clicked.connect(self.exitButton)
         self.main_form.resetB.clicked.connect(self.zuruecksetzen)
         self.main_form.umrechnenB.clicked.connect(self.umrechnen)
-        self.model = Model()
+
 
     def exitButton(self):
 
@@ -32,7 +33,7 @@ class Controller(QMainWindow):
 
 
     def umrechnen(self):
-        self.model.umrechnen()
+        self.model.umrechnen("USD","EUR")
         pass
 
 
