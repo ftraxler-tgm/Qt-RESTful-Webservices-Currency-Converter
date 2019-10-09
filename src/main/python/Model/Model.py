@@ -1,54 +1,53 @@
-import requests
+import requests,json
 class Rest:
 
     def __init__(self):
-        self.waehrung1 = None
-        self.waehrung2 = None
+        self.base= None
+        self.symbols = None
+        self.wert = None
+        self.output = None
+        self.online = True
 
 
-    def umrechnen(self,symbols,output,base,wert):
-        result = str(wert) + " " + base + " entsprechen \n\n"
+    def umrechnen(self,):
+        result = str(self.wert) + " " + self.base + " entsprechen \n\n"
         # kurs = output['rates'][symbols]
-        for x in symbols:
-            kurs = output['rates'][x]
-            result += "\t" + str(kurs * wert) + " " + x + " (Kurs: " + str(kurs) + ")\n"
+        for x in self.symbols:
+            kurs = self.output['rates'][x]
+            result += "\t" + str(kurs * self.wert) + " " + x + " (Kurs: " + str(kurs) + ")\n"
 
-        result += "\n\nStand: " + output['date']
+        result += "\n\nStand: " + self.output['date']
         print(result)
 
         return result
 
 
-    def Online(self,base,ziel,wert):
+    def requestData(self,base,ziel,wert):
+        self.wert=wert
+        self.base=base
+        self.symbols=str(ziel).split(',')
 
-        symbols=str(ziel).split(',')
+        print(self.online)
 
-        print(symbols)
+        if(self.online):
+            url = "https://api.exchangeratesapi.io/latest"
+            output=""
+            params = {"base": base,
+                      "symbols": ziel,
+                      }
+            resp = requests.get(url, params=params)
+            output = ""
+            if resp.status_code != 200:
+                output= resp.json()
+                raise ValueError("Request failed")
 
-
-
-
-        url = "https://api.exchangeratesapi.io/latest"
-        output=""
-        params = {"base": base,
-                  "symbols": ziel,
-                  }
-
-
-        print(params)
-        resp = requests.get(url, params=params)
-        output = ""
-
-        if resp.status_code != 200:
-            output= resp.json()
-            raise ValueError("Request failed")
-
+            else:
+                output = resp.json()
+                self.output=output
+                return (self.umrechnen())
         else:
-            output = resp.json()
-            print(output)
-            self.umrechnen(symbols,output,base,wert)
-
-
+            with open('../api.json') as json_data:
+                file= json.load(json_data)
 
 
 

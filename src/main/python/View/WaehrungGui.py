@@ -30,6 +30,7 @@ class Ui_mainWindow(object):
         self.status.setObjectName("status")
         self.liveCheckbox = QtWidgets.QCheckBox(self.centralwidget)
         self.liveCheckbox.setGeometry(QtCore.QRect(703, 14, 91, 31))
+        self.liveCheckbox.setChecked(True)
         self.liveCheckbox.setObjectName("liveCheckbox")
         self.umrechnenB = QtWidgets.QPushButton(self.centralwidget)
         self.umrechnenB.setGeometry(QtCore.QRect(594, 15, 93, 28))

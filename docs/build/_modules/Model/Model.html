@@ -33,47 +33,57 @@
           <div class="body" role="main">
             
   <h1>Source code for Model.Model</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span></span><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span><span class="nn">json</span>
 <div class="viewcode-block" id="Rest"><a class="viewcode-back" href="../../Model.html#Model.Model.Rest">[docs]</a><span class="k">class</span> <span class="nc">Rest</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">waehrung1</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">waehrung2</span> <span class="o">=</span> <span class="kc">None</span>
-
-<div class="viewcode-block" id="Rest.umrechnen"><a class="viewcode-back" href="../../Model.html#Model.Model.Rest.umrechnen">[docs]</a>    <span class="k">def</span> <span class="nf">umrechnen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">symbols</span><span class="p">,</span><span class="n">wert</span><span class="p">):</span>
-
-
-        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.exchangeratesapi.io/latest&quot;</span>
-        <span class="n">output</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="n">base</span><span class="p">,</span>
-                  <span class="s2">&quot;symbols&quot;</span><span class="p">:</span> <span class="n">symbols</span><span class="p">,</span>
-                  <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wert</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">online</span> <span class="o">=</span> <span class="kc">True</span>
 
 
-        <span class="nb">print</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<div class="viewcode-block" id="Rest.umrechnen"><a class="viewcode-back" href="../../Model.html#Model.Model.Rest.umrechnen">[docs]</a>    <span class="k">def</span> <span class="nf">umrechnen</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wert</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="s2">&quot; entsprechen </span><span class="se">\n\n</span><span class="s2">&quot;</span>
+        <span class="c1"># kurs = output[&#39;rates&#39;][symbols]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">:</span>
+            <span class="n">kurs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;rates&#39;</span><span class="p">][</span><span class="n">x</span><span class="p">]</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kurs</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">wert</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">&quot; (Kurs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kurs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)</span><span class="se">\n</span><span class="s2">&quot;</span>
 
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="n">output</span><span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Request failed&quot;</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-            <span class="n">kurs</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;rates&#39;</span><span class="p">][</span><span class="n">symbols</span><span class="p">]</span>
-
-
-        <span class="n">result</span><span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">wert</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">base</span><span class="o">+</span> <span class="s2">&quot; entsprechen </span><span class="se">\n\n</span><span class="s2">&quot;</span>
-        <span class="n">result</span><span class="o">+=</span><span class="nb">str</span><span class="p">(</span><span class="n">kurs</span><span class="o">*</span><span class="n">wert</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="n">symbols</span><span class="o">+</span><span class="s2">&quot; (Kurs: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">kurs</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;)</span><span class="se">\n\n</span><span class="s2">&quot;</span>
-
-        <span class="n">result</span><span class="o">+=</span><span class="s2">&quot;Stand: &quot;</span><span class="o">+</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Stand: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">result</span></div></div>
+        <span class="k">return</span> <span class="n">result</span></div>
 
 
+<div class="viewcode-block" id="Rest.requestData"><a class="viewcode-back" href="../../Model.html#Model.Model.Rest.requestData">[docs]</a>    <span class="k">def</span> <span class="nf">requestData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">ziel</span><span class="p">,</span><span class="n">wert</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wert</span><span class="o">=</span><span class="n">wert</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="o">=</span><span class="n">base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">ziel</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online</span><span class="p">)</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">online</span><span class="p">):</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.exchangeratesapi.io/latest&quot;</span>
+            <span class="n">output</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="n">base</span><span class="p">,</span>
+                      <span class="s2">&quot;symbols&quot;</span><span class="p">:</span> <span class="n">ziel</span><span class="p">,</span>
+                      <span class="p">}</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">output</span><span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Request failed&quot;</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">=</span><span class="n">output</span>
+                <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">umrechnen</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;api.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_data</span><span class="p">:</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></div></div>
 
 
 
