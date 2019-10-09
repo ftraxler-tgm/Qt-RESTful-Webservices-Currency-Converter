@@ -5,18 +5,37 @@ class Rest:
         self.waehrung1 = None
         self.waehrung2 = None
 
-    def umrechnen(self,base,symbols,wert):
+
+    def umrechnen(self,symbols,output,base,wert):
+        result = str(wert) + " " + base + " entsprechen \n\n"
+        # kurs = output['rates'][symbols]
+        for x in symbols:
+            kurs = output['rates'][x]
+            result += "\t" + str(kurs * wert) + " " + x + " (Kurs: " + str(kurs) + ")\n"
+
+        result += "\n\nStand: " + output['date']
+        print(result)
+
+        return result
+
+
+    def Online(self,base,ziel,wert):
+
+        symbols=str(ziel).split(',')
+
+        print(symbols)
+
+
 
 
         url = "https://api.exchangeratesapi.io/latest"
         output=""
         params = {"base": base,
-                  "symbols": symbols,
+                  "symbols": ziel,
                   }
 
 
         print(params)
-
         resp = requests.get(url, params=params)
         output = ""
 
@@ -27,16 +46,8 @@ class Rest:
         else:
             output = resp.json()
             print(output)
-            kurs = output['rates'][symbols]
+            self.umrechnen(symbols,output,base,wert)
 
-
-        result= str(wert)+" " + base+ " entsprechen \n\n"
-        result+=str(kurs*wert)+" "+symbols+" (Kurs: "+str(kurs)+")\n\n"
-
-        result+="Stand: "+output['date']
-        print(result)
-
-        return result
 
 
 

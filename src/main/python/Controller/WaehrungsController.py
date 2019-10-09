@@ -29,6 +29,7 @@ class Controller(QMainWindow):
         self.main_form.textBrowserBox.clear()
         self.main_form.zielwaehrung.clear()
         self.main_form.liveCheckbox.setChecked(False)
+        self.main_form.status.setText("Status:")
         print("All fields have been cleared")
 
 
@@ -36,9 +37,9 @@ class Controller(QMainWindow):
         try:
             request=self.model.umrechnen(self.main_form.waehrungInput.text().__str__(),self.main_form.zielwaehrung.text().__str__(),100.0)
             self.main_form.textBrowserBox.setText(request)
-            self.main_form.status.setText(self.main_form.status.text().__str__()+" Ok")
+            self.main_form.status.setText("Status: Ok")
         except ValueError as e:
-            self.main_form.status.setText(self.main_form.status.text().__str__()+e.__str__())
+            self.main_form.status.setText("Status: "+e.__str__())
 
 
 
