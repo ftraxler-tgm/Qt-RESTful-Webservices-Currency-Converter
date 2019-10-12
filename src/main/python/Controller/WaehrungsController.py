@@ -7,7 +7,11 @@ import sys, requests, json
 
 class Controller(QMainWindow):
     '''
-    :var
+
+    MVC pattern: Creates a controller according to the mvc pattern.
+    :var main_form: Qt Form
+    :var model: The Calculation and Rest Request
+
     '''
 
     def __init__(self, parent=None):
@@ -23,7 +27,9 @@ class Controller(QMainWindow):
         resp = requests.get("https://api.exchangeratesapi.io/latest")
         file = open("../api.json", "w")
         file.write(resp.text)
-
+    """
+    Changes the data source when you change from Live to Offline or the other way around
+    """
     def liveData(self):
         if self.main_form.liveCheckbox.isChecked():
             print("Switched to Live Data")
@@ -34,10 +40,15 @@ class Controller(QMainWindow):
             self.model = Offline.Offline()
             self.umrechnen()
 
+    """
+    Ends the programm
+    """
     def exitButton(self):
-
         sys.exit()
 
+    """
+    Resets all textfields and does a request from the exchange api and saves it into a file
+    """
     def zuruecksetzen(self):
         self.main_form.betragSpinBox.setValue(0)
         self.main_form.betragSpinBox.cleanText()
@@ -52,6 +63,9 @@ class Controller(QMainWindow):
         file.write(resp.text)
 
 
+    """
+    Sends the request to the model und prints out the response
+    """
     def umrechnen(self):
         try:
             request = self.model.requestData(self.main_form.waehrungInput.text().__str__(),

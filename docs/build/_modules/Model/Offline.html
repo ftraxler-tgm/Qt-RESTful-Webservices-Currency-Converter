@@ -1,0 +1,159 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Model.Offline &#8212; python  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for Model.Offline</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">Model</span> <span class="k">import</span> <span class="n">Abstract</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<div class="viewcode-block" id="Offline"><a class="viewcode-back" href="../../Model.html#Model.Offline.Offline">[docs]</a><span class="k">class</span> <span class="nc">Offline</span><span class="p">(</span><span class="n">Abstract</span><span class="o">.</span><span class="n">Abstract</span><span class="p">):</span>
+
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :var file the file where the data is saved for the offline-usage</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     Sends a request to the API with a Json in return and  Calculates the new value for the new currenc</span>
+<span class="sd">    :Var wert The value who needs to be converted into the new currency</span>
+<span class="sd">    :var ziel the goal currency</span>
+<span class="sd">    :var base the start currency</span>
+<span class="sd">    </span>
+<span class="sd">    :return A String with all the information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Offline.requestData"><a class="viewcode-back" href="../../Model.html#Model.Offline.Offline.requestData">[docs]</a>    <span class="k">def</span> <span class="nf">requestData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">ziel</span><span class="p">,</span> <span class="n">wert</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wert</span> <span class="o">=</span> <span class="n">wert</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ziel</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../api.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_data</span><span class="p">:</span>
+            <span class="n">file</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Base: &quot;</span> <span class="o">+</span> <span class="n">base</span> <span class="o">+</span> <span class="s2">&quot; Ziel: &quot;</span> <span class="o">+</span> <span class="n">ziel</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wert</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="s2">&quot; entsprechen &lt;br&gt;&quot;</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;&lt;ul&gt;&quot;</span>
+
+        <span class="k">if</span> <span class="n">base</span> <span class="o">!=</span> <span class="s2">&quot;EUR&quot;</span><span class="p">:</span>
+            <span class="n">umrechnung</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;rates&#39;</span><span class="p">][</span><span class="n">base</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wert in &quot;</span> <span class="o">+</span> <span class="n">base</span> <span class="o">+</span> <span class="s2">&quot;  &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wert</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kurs für die Umrechung in EUR &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">umrechnung</span><span class="p">))</span>
+            <span class="n">wert</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">wert</span> <span class="o">/</span> <span class="n">umrechnung</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wert in EUR &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wert</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s2">&quot;EUR&quot;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;&lt;li&gt;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">wert</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; EUR (Kurs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">umrechnung</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&lt;/li&gt;&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">kurs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;rates&#39;</span><span class="p">][</span><span class="n">x</span><span class="p">]</span>
+                <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;&lt;li&gt;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kurs</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">wert</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; &quot;</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">&quot; (Kurs: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kurs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&lt;/li&gt;&quot;</span>
+
+        <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/ul&gt;&lt;br&gt;&quot;</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;Stand: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">result</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Controller.html">Controller package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Model.html">Model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../View.html">View package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Author.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

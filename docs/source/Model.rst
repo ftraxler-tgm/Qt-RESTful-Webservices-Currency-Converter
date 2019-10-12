@@ -4,10 +4,26 @@ Model package
 Submodules
 ----------
 
-Model.Model module
-------------------
+Model.Abstract module
+---------------------
 
-.. automodule:: Model.Model
+.. automodule:: Model.Abstract
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Offline module
+--------------------
+
+.. automodule:: Model.Offline
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Online module
+-------------------
+
+.. automodule:: Model.Online
     :members:
     :undoc-members:
     :show-inheritance:

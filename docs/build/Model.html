@@ -39,20 +39,53 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-Model.Model">
-<span id="model-model-module"></span><h2>Model.Model module<a class="headerlink" href="#module-Model.Model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-Model.Abstract">
+<span id="model-abstract-module"></span><h2>Model.Abstract module<a class="headerlink" href="#module-Model.Abstract" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="Model.Model.Rest">
-<em class="property">class </em><code class="descclassname">Model.Model.</code><code class="descname">Rest</code><a class="reference internal" href="_modules/Model/Model.html#Rest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Model.Rest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dt id="Model.Abstract.Abstract">
+<em class="property">class </em><code class="descclassname">Model.Abstract.</code><code class="descname">Abstract</code><a class="reference internal" href="_modules/Model/Abstract.html#Abstract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Abstract.Abstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>:Var wert The value who needs to be converted into the new currency
+:var output the output of the API request
+:var symbols the goal currency
+:var base the start currency</p>
 <dl class="method">
-<dt id="Model.Model.Rest.requestData">
-<code class="descname">requestData</code><span class="sig-paren">(</span><em>base</em>, <em>ziel</em>, <em>wert</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Model.html#Rest.requestData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Model.Rest.requestData" title="Permalink to this definition">¶</a></dt>
+<dt id="Model.Abstract.Abstract.requestData">
+<code class="descname">requestData</code><span class="sig-paren">(</span><em>base</em>, <em>ziel</em>, <em>wert</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Abstract.html#Abstract.requestData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Abstract.Abstract.requestData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Offline">
+<span id="model-offline-module"></span><h2>Model.Offline module<a class="headerlink" href="#module-Model.Offline" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Offline.Offline">
+<em class="property">class </em><code class="descclassname">Model.Offline.</code><code class="descname">Offline</code><a class="reference internal" href="_modules/Model/Offline.html#Offline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Offline.Offline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Abstract.Abstract" title="Model.Abstract.Abstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model.Abstract.Abstract</span></code></a></p>
+<p>:var file the file where the data is saved for the offline-usage</p>
+<dl class="method">
+<dt id="Model.Offline.Offline.requestData">
+<code class="descname">requestData</code><span class="sig-paren">(</span><em>base</em>, <em>ziel</em>, <em>wert</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Offline.html#Offline.requestData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Offline.Offline.requestData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-Model.Online">
+<span id="model-online-module"></span><h2>Model.Online module<a class="headerlink" href="#module-Model.Online" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Model.Online.Online">
+<em class="property">class </em><code class="descclassname">Model.Online.</code><code class="descname">Online</code><a class="reference internal" href="_modules/Model/Online.html#Online"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Online.Online" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Model.Abstract.Abstract" title="Model.Abstract.Abstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model.Abstract.Abstract</span></code></a></p>
+<dl class="method">
+<dt id="Model.Online.Online.requestData">
+<code class="descname">requestData</code><span class="sig-paren">(</span><em>base</em>, <em>ziel</em>, <em>wert</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Online.html#Online.requestData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Online.Online.requestData" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="Model.Model.Rest.umrechnen">
-<code class="descname">umrechnen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Model.html#Rest.umrechnen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Model.Rest.umrechnen" title="Permalink to this definition">¶</a></dt>
+<dt id="Model.Online.Online.umrechnen">
+<code class="descname">umrechnen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Online.html#Online.umrechnen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Online.Online.umrechnen" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -85,7 +118,9 @@
 <li class="toctree-l1"><a class="reference internal" href="Controller.html">Controller package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Model package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-Model.Model">Model.Model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Model.Abstract">Model.Abstract module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Model.Offline">Model.Offline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Model.Online">Model.Online module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-Model">Module contents</a></li>
 </ul>
 </li>
