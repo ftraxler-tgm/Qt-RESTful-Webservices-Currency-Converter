@@ -38,24 +38,25 @@
 
 
 <div class="viewcode-block" id="Offline"><a class="viewcode-back" href="../../Model.html#Model.Offline.Offline">[docs]</a><span class="k">class</span> <span class="nc">Offline</span><span class="p">(</span><span class="n">Abstract</span><span class="o">.</span><span class="n">Abstract</span><span class="p">):</span>
-
-
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    :var file the file where the data is saved for the offline-usage</span>
+<span class="sd">    The Oflline Class for the Offline-Usage</span>
+
+<span class="sd">    :ivar file: The file where the data is saved for the offline-usage</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">     Sends a request to the API with a Json in return and  Calculates the new value for the new currenc</span>
-<span class="sd">    :Var wert The value who needs to be converted into the new currency</span>
-<span class="sd">    :var ziel the goal currency</span>
-<span class="sd">    :var base the start currency</span>
-<span class="sd">    </span>
-<span class="sd">    :return A String with all the information</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Offline.requestData"><a class="viewcode-back" href="../../Model.html#Model.Offline.Offline.requestData">[docs]</a>    <span class="k">def</span> <span class="nf">requestData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">ziel</span><span class="p">,</span> <span class="n">wert</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a request to the API with a Json in return and  Calculates the new value for the new currency</span>
+<span class="sd">        :param wert: The value who needs to be converted into the new currency</span>
+<span class="sd">        :param ziel: The goal currency</span>
+<span class="sd">        :param base: The start currency</span>
+<span class="sd">        :returns: A String with all the information</span>
+<span class="sd">       &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">wert</span> <span class="o">=</span> <span class="n">wert</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ziel</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>

@@ -33,18 +33,15 @@
           <div class="body" role="main">
             
   <h1>Source code for Model.Abstract</h1><div class="highlight"><pre>
-<span></span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
 
 <div class="viewcode-block" id="Abstract"><a class="viewcode-back" href="../../Model.html#Model.Abstract.Abstract">[docs]</a><span class="k">class</span> <span class="nc">Abstract</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-
-
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    :Var wert The value who needs to be converted into the new currency</span>
-<span class="sd">    :var output the output of the API request</span>
-<span class="sd">    :var symbols the goal currency</span>
-<span class="sd">    :var base the start currency</span>
+<span class="sd">    :ivar wert: The value who needs to be converted into the new currency</span>
+<span class="sd">    :ivar output: the output of the API request</span>
+<span class="sd">    :ivar symbols: the goal currency</span>
+<span class="sd">    :ivar base: the start currency</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wert</span> <span class="o">=</span> <span class="kc">None</span>
@@ -52,20 +49,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="kc">None</span>
 
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    </span>
-<span class="sd">    Calculates the result Data</span>
-<span class="sd">    </span>
-<span class="sd">    </span>
-<span class="sd">    :param base the base currency for example &quot;EUR&quot;</span>
-<span class="sd">    :param ziel the goal currency for example &quot;USD,CAD&quot;</span>
-<span class="sd">    :param wert the how much money of the base currency you have</span>
-<span class="sd">    </span>
-<span class="sd">    :returns a String with all the information</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Abstract.requestData"><a class="viewcode-back" href="../../Model.html#Model.Abstract.Abstract.requestData">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">requestData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">ziel</span><span class="p">,</span> <span class="n">wert</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">       Calculates the result Data</span>
+
+
+<span class="sd">       :param base: The base currency for example &quot;EUR&quot;</span>
+<span class="sd">       :param ziel: The goal currency for example &quot;USD,CAD&quot;</span>
+<span class="sd">       :param wert: The how much money of the base currency you have</span>
+
+<span class="sd">       :returns: A String with all the information</span>
+<span class="sd">       &quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
 </pre></div>
 

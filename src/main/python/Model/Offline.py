@@ -3,24 +3,25 @@ import json
 
 
 class Offline(Abstract.Abstract):
-
-
     """
-    :var file the file where the data is saved for the offline-usage
+    The Oflline Class for the Offline-Usage
+
+    :ivar file: The file where the data is saved for the offline-usage
     """
+
     def __init__(self):
         super().__init__()
         self.file = None
 
-    """
-     Sends a request to the API with a Json in return and  Calculates the new value for the new currenc
-    :Var wert The value who needs to be converted into the new currency
-    :var ziel the goal currency
-    :var base the start currency
-    
-    :return A String with all the information
-    """
     def requestData(self, base, ziel, wert):
+        """
+        Sends a request to the API with a Json in return and  Calculates the new value for the new currency
+        :param wert: The value who needs to be converted into the new currency
+        :param ziel: The goal currency
+        :param base: The start currency
+        :returns: A String with all the information
+       """
+
         self.wert = wert
         self.base = base
         self.symbols = str(ziel).split(',')

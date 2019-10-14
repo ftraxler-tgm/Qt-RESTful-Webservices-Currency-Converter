@@ -1,19 +1,20 @@
-from View import WaehrungGui
-from Model import Online
-from Model import Offline
+import requests
+import sys
+
 from PyQt5.QtWidgets import *
-import sys, requests, json
+
+from Model import Offline
+from Model import Online
+from View import WaehrungGui
 
 
 class Controller(QMainWindow):
-    '''
-
+    """
     MVC pattern: Creates a controller according to the mvc pattern.
-    :var main_form: Qt Form
-    :var model: The Calculation and Rest Request
 
-    '''
-
+    :ivar main_form: Qt Form
+    :ivar model: The Calculation and Rest Request
+    """
     def __init__(self, parent=None):
         super().__init__(parent)
         self.model = Online.Online()
@@ -27,10 +28,11 @@ class Controller(QMainWindow):
         resp = requests.get("https://api.exchangeratesapi.io/latest")
         file = open("../api.json", "w")
         file.write(resp.text)
-    """
-    Changes the data source when you change from Live to Offline or the other way around
-    """
+
     def liveData(self):
+        """
+        Changes the data source when you change from Live to Offline or the other way around
+        """
         if self.main_form.liveCheckbox.isChecked():
             print("Switched to Live Data")
             self.model = Online.Online()
@@ -40,16 +42,18 @@ class Controller(QMainWindow):
             self.model = Offline.Offline()
             self.umrechnen()
 
-    """
-    Ends the programm
-    """
+
     def exitButton(self):
+        """
+        Ends the programm
+        """
         sys.exit()
 
-    """
-    Resets all textfields and does a request from the exchange api and saves it into a file
-    """
+
     def zuruecksetzen(self):
+        """
+        Resets all textfields and does a request from the exchange api and saves it into a file
+        """
         self.main_form.betragSpinBox.setValue(0)
         self.main_form.betragSpinBox.cleanText()
         self.main_form.waehrungInput.clear()
@@ -63,10 +67,11 @@ class Controller(QMainWindow):
         file.write(resp.text)
 
 
-    """
-    Sends the request to the model und prints out the response
-    """
+
     def umrechnen(self):
+        """
+        Sends the request to the model und prints out the response
+        """
         try:
             request = self.model.requestData(self.main_form.waehrungInput.text().__str__(),
                                              self.main_form.zielwaehrung.text().__str__(), float(self.main_form.betragSpinBox.value().__str__()))

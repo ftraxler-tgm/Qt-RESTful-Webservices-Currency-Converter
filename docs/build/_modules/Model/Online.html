@@ -39,17 +39,19 @@
 
 
 <div class="viewcode-block" id="Online"><a class="viewcode-back" href="../../Model.html#Model.Online.Online">[docs]</a><span class="k">class</span> <span class="nc">Online</span><span class="p">(</span><span class="n">Abstract</span><span class="o">.</span><span class="n">Abstract</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Online Class for the Online-Usage</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculates the new value for the new currency and creates a useful output</span>
-<span class="sd">    </span>
-<span class="sd">    :return A HTMl output as String</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Online.umrechnen"><a class="viewcode-back" href="../../Model.html#Model.Online.Online.umrechnen">[docs]</a>    <span class="k">def</span> <span class="nf">umrechnen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the new value for the new currency and creates a useful output</span>
+
+<span class="sd">        :returns: A HTMl output as String</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wert</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="s2">&quot; entsprechen &lt;br&gt;&quot;</span>
         <span class="c1"># kurs = output[&#39;rates&#39;][symbols]</span>
         <span class="n">result</span> <span class="o">+=</span> <span class="s2">&quot;&lt;ul&gt;&quot;</span>
@@ -63,17 +65,15 @@
 
         <span class="k">return</span> <span class="n">result</span></div>
 
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    </span>
-<span class="sd">    Sends a request to the API with a Json in return and forwards the data to umrechnen</span>
-<span class="sd">    :Var wert The value who needs to be converted into the new currency</span>
-<span class="sd">    :var ziel the goal currency</span>
-<span class="sd">    :var base the start currency</span>
-<span class="sd">    </span>
-<span class="sd">    :return A String with all the information</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="Online.requestData"><a class="viewcode-back" href="../../Model.html#Model.Online.Online.requestData">[docs]</a>    <span class="k">def</span> <span class="nf">requestData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">ziel</span><span class="p">,</span> <span class="n">wert</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a request to the API with a Json in return and forwards the data to umrechnen</span>
+<span class="sd">        :Var wert The value who needs to be converted into the new currency</span>
+<span class="sd">        :param ziel: the goal currency</span>
+<span class="sd">        :param base: the start currency</span>
+
+<span class="sd">        :returns: A String with all the information</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wert</span> <span class="o">=</span> <span class="n">wert</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ziel</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>

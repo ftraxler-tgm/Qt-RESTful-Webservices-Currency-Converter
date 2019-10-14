@@ -45,14 +45,41 @@
 <dt id="Model.Abstract.Abstract">
 <em class="property">class </em><code class="descclassname">Model.Abstract.</code><code class="descname">Abstract</code><a class="reference internal" href="_modules/Model/Abstract.html#Abstract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Abstract.Abstract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<p>:Var wert The value who needs to be converted into the new currency
-:var output the output of the API request
-:var symbols the goal currency
-:var base the start currency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>wert</strong> – The value who needs to be converted into the new currency</li>
+<li><strong>output</strong> – the output of the API request</li>
+<li><strong>symbols</strong> – the goal currency</li>
+<li><strong>base</strong> – the start currency</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="Model.Abstract.Abstract.requestData">
 <code class="descname">requestData</code><span class="sig-paren">(</span><em>base</em>, <em>ziel</em>, <em>wert</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Abstract.html#Abstract.requestData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Abstract.Abstract.requestData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calculates the result Data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>base</strong> – The base currency for example “EUR”</li>
+<li><strong>ziel</strong> – The goal currency for example “USD,CAD”</li>
+<li><strong>wert</strong> – The how much money of the base currency you have</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A String with all the information</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -63,11 +90,24 @@
 <dt id="Model.Offline.Offline">
 <em class="property">class </em><code class="descclassname">Model.Offline.</code><code class="descname">Offline</code><a class="reference internal" href="_modules/Model/Offline.html#Offline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Offline.Offline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#Model.Abstract.Abstract" title="Model.Abstract.Abstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model.Abstract.Abstract</span></code></a></p>
-<p>:var file the file where the data is saved for the offline-usage</p>
+<p>The Oflline Class for the Offline-Usage</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>file</strong> – The file where the data is saved for the offline-usage</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="Model.Offline.Offline.requestData">
 <code class="descname">requestData</code><span class="sig-paren">(</span><em>base</em>, <em>ziel</em>, <em>wert</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Offline.html#Offline.requestData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Offline.Offline.requestData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sends a request to the API with a Json in return and  Calculates the new value for the new currency
+:param wert: The value who needs to be converted into the new currency
+:param ziel: The goal currency
+:param base: The start currency
+:returns: A String with all the information</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -78,15 +118,37 @@
 <dt id="Model.Online.Online">
 <em class="property">class </em><code class="descclassname">Model.Online.</code><code class="descname">Online</code><a class="reference internal" href="_modules/Model/Online.html#Online"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Online.Online" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#Model.Abstract.Abstract" title="Model.Abstract.Abstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model.Abstract.Abstract</span></code></a></p>
+<p>The Online Class for the Online-Usage</p>
 <dl class="method">
 <dt id="Model.Online.Online.requestData">
 <code class="descname">requestData</code><span class="sig-paren">(</span><em>base</em>, <em>ziel</em>, <em>wert</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Online.html#Online.requestData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Online.Online.requestData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sends a request to the API with a Json in return and forwards the data to umrechnen
+:Var wert The value who needs to be converted into the new currency
+:param ziel: the goal currency
+:param base: the start currency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A String with all the information</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Model.Online.Online.umrechnen">
 <code class="descname">umrechnen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Model/Online.html#Online.umrechnen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Model.Online.Online.umrechnen" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calculates the new value for the new currency and creates a useful output</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A HTMl output as String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
